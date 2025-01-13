@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 const email = ref("");
 const password = ref("");
+const rememberAccount = ref(true);
 </script>
 
 <template>
@@ -15,7 +16,6 @@ const password = ref("");
         <h2 class="title">Login into your account.</h2>
         <form>
           <!-- email -->
-
           <label for="email" class="label">Email</label>
           <el-input
             id="email"
@@ -36,22 +36,29 @@ const password = ref("");
             placeholder="Please input password"
             show-password
           />
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="rememberAccount"
+              v-model="rememberAccount"
+              class="checkbox"
+            />
+            <label for="rememberAccount">Stay logged in</label>
+          </div>
           <!-- Sign in button -->
-          <el-button type="primary" class="btn-signin">Primary</el-button>
+          <el-button type="primary" class="btn-signin">Sign in</el-button>
+          <!-- 其他链接和功能 -->
+
+          <a href="#" class="link"> I don't have an account </a>
+          <a href="#" class="link"> I forgot my password </a>
         </form>
-        <!-- 其他链接和功能 -->
-        <a href="#" class="link"> Create a new AWS account </a>
-        <div class=""></div>
       </div>
       <!-- 右侧的广告或宣传图 -->
       <div class="ad-container">
-        <h3>AWS re:Invent</h3>
-        <p class="ad-date">Dec. 2 – Dec. 6, 2024 | Las Vegas, NV</p>
-        <p class="ad-text">
-          Automate code reviews with Amazon Q Developer - get immediate feedback
-          on your code so you can iterate faster
-        </p>
-        <button class="btn-learn-more">Learn more</button>
+        <img
+          src="@\assets\image\popup\2 years access ad revised (1).jpg"
+          alt=""
+        />
       </div>
     </div>
   </div>
@@ -67,18 +74,18 @@ const password = ref("");
 }
 
 .login-content {
+  /* 整体布局 */
   display: flex;
   flex-direction: row; /* 横向排列 */
   min-height: 100vh -5.5rem;
-  padding: 2rem 1rem;
+  padding: 2rem;
+  margin: 0 auto;
   background-color: $background-color;
 
+  /* 左侧表单 */
   .login-form-container {
-    flex: 1;
+    flex: 1; /* 占满剩余空间 */
     padding: 2rem;
-    border-right: 1px solid #e0e0e0;
-    max-width: 25rem;
-
     .title {
       font-size: 1.5rem;
       margin-bottom: 1rem;
@@ -93,20 +100,71 @@ const password = ref("");
 
     .input {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       font-size: 1rem;
       box-sizing: border-box;
     }
 
+    .checkbox {
+      margin-right: 0.3rem;
+      accent-color: $primary-color;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
     .btn-signin {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.5rem;
       font-size: 1rem;
       border: none;
       color: #fff;
       cursor: pointer;
     }
+
+    .link {
+      display: block;
+      color: $primary-color;
+      text-decoration: none;
+      margin-top: 0.5rem;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* 右侧广告 */
+  .ad-container {
+    flex: 1;
+    padding: 2rem;
+    img {
+      max-width: 85%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login-form-container {
+    border-right: 1px solid #e0e0e0; /* 右侧加一条分割线 */
+    margin-left: 5rem;
+  }
+}
+
+@media (max-width: $phone-width) {
+  .login-content {
+    flex-direction: column;
+  }
+
+  .ad-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
 </style>

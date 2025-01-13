@@ -12,6 +12,10 @@ import { vite as vidstack } from "vidstack/plugins";
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    host: "0.0.0.0", // 允许使用局域网 IP 访问
+    port: 5173, // 可选，指定开发服务器端口
+  },
   plugins: [
     vue({
       template: {
