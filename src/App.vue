@@ -4,7 +4,3 @@
   <RouterView />
 </template>
 
-<style>
-
-
-</style>

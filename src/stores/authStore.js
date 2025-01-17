@@ -1,5 +1,5 @@
-const { defineStore } = require("pinia");
-const { computed, ref } = require("vue");
+import { ref, computed } from "vue";
+import { defineStore } from "pinia";
 
 const windlestone_user = "windlestone_user";
 const windlestone_Token = "windlestone_Token";
@@ -29,9 +29,17 @@ export const useAuthStore = defineStore("auth", () => {
     return _token.value;
   });
 
+  let is_logined = computed(() => {
+    if (token.value) {
+      return true;
+    }
+    return false;
+  });
+
   return {
     setUserToken,
     user,
     token,
+    is_logined,
   };
 });

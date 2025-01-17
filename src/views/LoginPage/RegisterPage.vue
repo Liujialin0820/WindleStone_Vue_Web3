@@ -10,36 +10,17 @@ const rememberAccount = ref(true);
 const router = useRouter();
 const authStore = useAuthStore();
 
-let form = reactive({
+const form = reactive({
+  firstname: "",
+  lastname: "",
   email: "",
   password: "",
+  confirmPassword: "",
+  phone: "",
 });
 
-const onSubmit = async () => {
-  let pwdRgx = /^[0-9a-zA-Z_-]{6,}/;
-  let emailRgx = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9])+/;
-  if (!emailRgx.test(form.email)) {
-    ElMessage.info("Please enter a valid email address");
-    return;
-  }
-  if (!pwdRgx.test(form.password)) {
-    ElMessage.info("Password must be at least 6 characters");
-    return;
-  }
-  try {
-    let data = await login(form.email, form.password);
-    let token = data.token;
-    let user = data.user;
-    authStore.setUserToken(user, token);
-    ElMessage.success("Login successfully");
-    // 跳转到OA系统的首页
-    console.log(user);
-
-    router.push({ name: "lmsdefault" });
-  } catch (error) {
-    // alert(detail)
-    ElMessage.error(error.response.data.detail);
-  }
+const onSubmit = () => {
+  console.log("submit!");
 };
 </script>
 
@@ -50,50 +31,45 @@ const onSubmit = async () => {
     </div>
     <div class="login-content container">
       <div class="login-form-container">
-        <h2 class="title">Login into your account.</h2>
-        <form>
-          <!-- email -->
-          <label for="email" class="label">Email</label>
-          <el-input
-            id="email"
-            v-model="form.email"
-            type="text"
-            placeholder="please enter your email"
-            required
-            class="input"
-          />
-
-          <!-- Password -->
-          <label for="password" class="label">Password</label>
-          <el-input
-            id="password"
-            v-model="form.password"
-            class="input"
-            type="password"
-            placeholder="Please input password"
-            show-password
-          />
-          <div class="checkbox-group">
-            <input
-              type="checkbox"
-              id="rememberAccount"
-              v-model="rememberAccount"
-              class="checkbox"
+        <h2 class="title">Sign Up</h2>
+        <p>
+          Register a new account or
+          <router-link class="link" to="/login">sign in</router-link> if you
+          already have an account
+        </p>
+        <el-form
+          :model="form"
+          label-width="auto"
+          label-position="top"
+          class="login-form"
+        >
+          <el-form-item label="First Name" class="label">
+            <el-input v-model="form.firstname" />
+          </el-form-item>
+          <el-form-item label="Last Name" class="label">
+            <el-input v-model="form.lastname" />
+          </el-form-item>
+          <el-form-item label="Email" class="label">
+            <el-input v-model="form.email" />
+          </el-form-item>
+          <el-form-item label="Password" class="label">
+            <el-input
+              type="password"
+              v-model="form.password"
+              autocomplete="new-password"
             />
-            <label for="rememberAccount">Stay logged in</label>
-          </div>
-          <!-- Sign in button -->
-          <el-button type="primary" class="btn-signin" @click="onSubmit"
-            >Sign in</el-button
-          >
-          <!-- 其他链接和功能 -->
-          <router-link to="/register" class="link">
-            I don't have an account
-          </router-link>
-          <router-link to="/reset-password" class="link">
-            I forgot my password
-          </router-link>
-        </form>
+          </el-form-item>
+          <el-form-item label="Confirm Password" class="label">
+            <el-input
+              type="password"
+              v-model="form.confirmPassword"
+              autocomplete="new-password"
+            />
+          </el-form-item>
+          <el-form-item label="Phone" class="label">
+            <el-input v-model="form.phone" />
+          </el-form-item>
+        </el-form>
       </div>
       <!-- 右侧的广告或宣传图 -->
       <div class="ad-container">
@@ -128,6 +104,14 @@ const onSubmit = async () => {
   .login-form-container {
     flex: 1; /* 占满剩余空间 */
     padding: 2rem;
+
+    .login-page {
+      .el-form {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
     .title {
       font-size: 1.5rem;
       margin-bottom: 1rem;
@@ -169,10 +153,8 @@ const onSubmit = async () => {
     }
 
     .link {
-      display: block;
       color: $primary-color;
       text-decoration: none;
-      margin-top: 0.5rem;
     }
 
     .link:hover {
@@ -188,6 +170,20 @@ const onSubmit = async () => {
       max-width: 85%;
       height: auto;
     }
+  }
+}
+
+.ad-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; // Center vertically
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain; // Maintain aspect ratio
   }
 }
 

@@ -1,8 +1,30 @@
-@use "./color.scss" as *;
-@forward "./color.scss";
+// 在编译阶段就知道真实颜色值
+$background-color: #ffffff;
+$grey-background-color: #f7f7f7;
+$primary-color: #66de86;
+$primary-color-a20: rgba($primary-color, 0.2);
+$primary-color-a50: rgba($primary-color, 0.5);
+$secondary-color: #ff6347;
 
-@use "./size.scss" as *;
-@forward "./size.scss";
+$grey: #888;
+$p-color: #333;
+$header-color: #333;
+$footer-color: #333;
+$h1-color: #333;
+$h2-color: #333;
+$h3-color: #333;
+$h4-color: #333;
+$success-color: #67c23a;
+$warning-color: #e6a23c;
+$danger-color: #f56c6c;
+$error-color: #f56c6c;
+
+$pad-width: 1200px;
+$phone-width: 768px;
+
+$window-font-size: 16px;
+$pad-font-size: 12px;
+$phone-font-size: 10px;
 
 * {
   margin: 0;

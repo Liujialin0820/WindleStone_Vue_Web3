@@ -1,28 +1,26 @@
-@use "@/styles/base/basic.scss" as *;
+@use "@/styles/base/basic.scss" as basic;
 
 @forward "element-plus/theme-chalk/src/common/var.scss" with (
   $colors: (
     "primary": (
       // 主色
-      "base": $primary-color,
+      "base": basic.$primary-color,
     ),
     "success": (
       // 成功色
-      "base": $success-color,
+      "base": basic.$success-color,
     ),
     "warning": (
       // 警告色
-      "base": $warning-color,
+      "base": basic.$warning-color,
     ),
     "danger": (
       // 危险色
-      "base": $danger-color,
+      "base": basic.$danger-color,
     ),
     "error": (
       // 错误色
-      "base": $error-color,
+      "base": basic.$error-color,
     ),
   )
 );
-
-@forward "@/styles/base/basic.scss";

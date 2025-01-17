@@ -10,8 +10,13 @@ export default [
     component: () => import("@/views/LoginPage/LoginPage.vue"),
   },
   {
-    path: "/login2",
-    name: "login2",
-    component: () => import("@/views/LoginPage/chat.vue"),
+    path: "/register",
+    name: "register",
+    component: () => import("@/views/LoginPage/RegisterPage.vue"),
+  },
+  {
+    path: "/reset-password",
+    name: "reset-password",
+    component: () => import("@/views/LoginPage/ResetPassword.vue"),
   },
 ];
