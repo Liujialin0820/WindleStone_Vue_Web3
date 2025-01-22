@@ -1,7 +1,13 @@
 <script setup>
+import { useAuthStore } from "@/stores/authStore";
 import { useDataStore } from "@/stores/dataStore";
 import DataOnline from "@/views/DeliveryPage/Layout/DataOnline.vue";
 const dataStore = useDataStore();
+const authStore = useAuthStore();
+
+const logout = () => {
+  authStore.logout();
+};
 </script>
 
 <template>
@@ -28,8 +34,8 @@ const dataStore = useDataStore();
     </p>
   </el-card>
   <el-card style="max-width: 100%; margin: 1rem 0">
-    <el-button type="primary" size="medium" class="button">Log Out</el-button>
-    <el-button type="danger" size="medium" class="button">
+    <el-button type="primary" class="button" @click="logout">Log Out</el-button>
+    <el-button type="danger" class="button">
       Log Out & Delete All Data
     </el-button>
   </el-card>

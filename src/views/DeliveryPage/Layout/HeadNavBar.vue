@@ -5,6 +5,14 @@
     </div>
 
     <div class="options">
+      <router-link
+        :to="{ name: 'admin' }"
+        class="nav-item-link"
+        v-if="authStore.user.is_staff"
+      >
+        <div class="nav-item">Admin</div>
+      </router-link>
+
       <router-link :to="{ name: 'lmshome' }" class="nav-item-link">
         <div
           class="nav-item home"
@@ -58,9 +66,11 @@ import BasicContainer from "@/components/layout/BasicContainer.vue";
 import { ref } from "vue";
 import logo from "@/assets/image/common/windlestone-logo.png";
 import DataOnline from "./DataOnline.vue";
+import { useAuthStore } from "@/stores/authStore";
 
 const logoSrc = ref(logo);
 const load = ref(false);
+const authStore = useAuthStore();
 </script>
 
 <style scoped lang="scss">

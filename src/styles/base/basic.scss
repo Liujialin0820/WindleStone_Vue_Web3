@@ -1,12 +1,17 @@
 // 在编译阶段就知道真实颜色值
-$background-color: #ffffff;
+$background-color: #f4f6f9;
 $grey-background-color: #f7f7f7;
-$primary-color: #66de86;
+$primary-color: #003263;
+$primary-color-a10: rgba($primary-color, 0.1);
 $primary-color-a20: rgba($primary-color, 0.2);
 $primary-color-a50: rgba($primary-color, 0.5);
 $secondary-color: #ff6347;
 
+$gold: #ffba00;
+$dark-red: #841515;
+$white: #fbf6f3;
 $grey: #888;
+
 $p-color: #333;
 $header-color: #333;
 $footer-color: #333;

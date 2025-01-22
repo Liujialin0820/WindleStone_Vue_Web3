@@ -1,8 +1,11 @@
 <script setup>
 import { useAuthStore } from "@/stores/authStore";
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import ChangePwd from "./components/ChangePwd.vue";
 const authStore = useAuthStore();
 const ruleFormRef = ref();
+const router = useRouter();
 const form = reactive({
   last_name: "",
   first_name: "",
@@ -23,9 +26,16 @@ const rules = reactive({
     { required: true, message: "Please input last name", trigger: "blur" },
   ],
 });
-const onSubmit = () => {
+
+const ChangeProfile = () => {
   console.log("submit!");
 };
+
+const contactus = () => {
+  router.push({ name: "lmsaccountcontactus" });
+};
+
+let FormVisible = ref(false);
 </script>
 
 <template>
@@ -48,7 +58,7 @@ const onSubmit = () => {
       </el-form-item>
       <el-form-item label="Password :" prop="password">
         <el-input v-model="form.password" type="password" disabled />
-        <router-link class="change_link"> Change my password</router-link>
+        <el-button @click="FormVisible = true">Change my password</el-button>
       </el-form-item>
       <el-form-item label="Phone Number :" prop="phone">
         <el-input v-model="form.phone" />
@@ -57,15 +67,16 @@ const onSubmit = () => {
         <el-input v-model="form.enrolled_until" disabled />
       </el-form-item>
       <el-form-item>
-        <el-button class="button" type="primary" @click="onSubmit"
+        <el-button class="button" type="primary" @click="ChangeProfile"
           >Change My Profile</el-button
         >
-        <el-button class="button" type="info" @click="onSubmit"
+        <el-button class="button" type="info" @click="contactus"
           >Contact Us</el-button
         >
       </el-form-item>
     </el-form>
   </el-card>
+  <ChangePwd v-model="FormVisible"></ChangePwd>
 </template>
 
 <style scoped>
